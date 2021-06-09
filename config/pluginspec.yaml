@@ -1,0 +1,61 @@
+pluginInfo:
+  # This is default sample specification
+  # Feel free to change it
+  # Call pdk showdoc pluginspec to see the list of available fields and their description
+  pluginName: 'EC-PostgreSQL-noclient'
+  version: '1.0.1'
+  description: 'Integrates with PostgreSQL without requiring a PostgreSQL client installed on the Agent'
+  author: 'Jean-Philippe Briend'
+  supportUrl: 'none'
+  category: 'Database'
+  shell: 'ec-groovy'
+
+# Plugin configuration description
+configuration:
+  # This is a shell used for checking connection
+  shell: 'ec-groovy'
+  # A script for checking connection will be generated
+  checkConnection: 'true'
+  # A set of fields will be added to process debug level in the configuration
+  hasDebugLevel: true
+  parameters:
+
+procedures:
+-
+  name: 'Execute SQL commands'
+  description: 'Execute SQL commands on a remote PostgreSQL server'
+  # configuration field will be generated automatically
+  hasConfig: false
+  parameters:
+  -
+    name: server
+    documentation: IP or hostname of the PostgreSQL server
+    required: true
+    type: entry
+    label: PostgreSQL server
+  -
+    name: port
+    documentation: Port of the PostgreSQL server
+    required: true
+    type: entry
+    label: PostgreSQL port
+  -
+    name: credential
+    documentation: Credentials to connect to the database
+    required: true
+    type: credential
+    label: Database credentials
+  -
+    name: database
+    documentation: Name of the PostgreSQL database
+    required: true
+    type: entry
+    label: Database name
+  -
+    name: sql_query
+    documentation: SQL query to execute
+    required: true
+    type: textarea
+    label: SQL query
+  outputParameters:
+    result: 'Result of the execution of the SQL query'
